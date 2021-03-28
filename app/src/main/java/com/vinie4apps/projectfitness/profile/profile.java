@@ -25,7 +25,6 @@ public class profile extends AppCompatActivity {
         name = findViewById(R.id.nome);
 
 
-        name.setText(nome);
 
 
     }
