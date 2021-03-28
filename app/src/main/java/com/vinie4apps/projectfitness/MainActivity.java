@@ -2,6 +2,7 @@ package com.vinie4apps.projectfitness;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
@@ -25,10 +26,9 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    //import de objs
     private PageAdapter pageAdapter;
     private ViewPager viewPager;
-    private LinearLayout linearDot;
-    private TextView[] textView;
     private int[] layouts;
 
     @Override
@@ -36,15 +36,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // config. da toolbar
+        Toolbar toolbar = findViewById(R.id.toolbarmain);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Project Fitness");
+        toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.white));
 
-
+        // config. do ViewHolder
         viewPager = findViewById(R.id.view_pager);
-
-
         layouts = new int[]{R.layout.home_view,R.layout.activity_dieta,R.layout.activity_treino};
         pageAdapter = new PageAdapter(layouts, getApplicationContext());
         viewPager.setAdapter(pageAdapter);
 
+        // config. da Tabs
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
         tabs.setBackgroundColor(ContextCompat.getColor(this, R.color.azul));
@@ -57,17 +61,14 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
             }
 
             @Override
             public void onPageSelected(int position) {
-
             }
 
             @Override
             public void onPageScrollStateChanged(int state) {
-
             }
         });
 
