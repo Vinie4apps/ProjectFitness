@@ -7,6 +7,8 @@ import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.vinie4apps.projectfitness.profile.login;
+
 public class SplashScreen extends AppCompatActivity {
 
     @Override
@@ -25,7 +27,7 @@ public class SplashScreen extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent i = new Intent(com.vinie4apps.projectfitness.SplashScreen.this, MainActivity.class);
+                Intent i = new Intent(com.vinie4apps.projectfitness.SplashScreen.this, login.class);
                 startActivity(i);
                 finish();
             }

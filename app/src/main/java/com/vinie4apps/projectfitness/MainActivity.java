@@ -1,28 +1,21 @@
 package com.vinie4apps.projectfitness;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
-import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.Html;
+import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
-
-
-import java.util.ArrayList;
-import java.util.List;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,11 +23,15 @@ public class MainActivity extends AppCompatActivity {
     private PageAdapter pageAdapter;
     private ViewPager viewPager;
     private int[] layouts;
+    FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        auth = FirebaseAuth.getInstance();
 
         // config. da toolbar
         Toolbar toolbar = findViewById(R.id.toolbarmain);
@@ -44,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
         // config. do ViewHolder
         viewPager = findViewById(R.id.view_pager);
-        layouts = new int[]{R.layout.home_view,R.layout.activity_dieta,R.layout.activity_treino};
+        layouts = new int[]{R.layout.home_view,R.layout.dieta_view,R.layout.treino_view};
         pageAdapter = new PageAdapter(layouts, getApplicationContext());
         viewPager.setAdapter(pageAdapter);
 
@@ -76,6 +73,31 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.menulogout) {
+            new AlertDialog.Builder(MainActivity.this)
+                    .setTitle("Fazer logout ?")
+                    .setMessage("aaaa !")
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            auth.signOut();
+                        }
+                    })
+
+                    .setNegativeButton(android.R.string.no, null)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
 }

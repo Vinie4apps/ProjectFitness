@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.vinie4apps.projectfitness">
 
+    <permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,7 +14,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjectFitness">
-        <activity android:name=".home"></activity>
+        <activity android:name=".profile.login"></activity>
+        <activity android:name=".home" />
+        <activity android:name=".profile.profile"/>
+        <activity android:name=".profile.register"/>
         <activity android:name=".treino" />
         <activity android:name=".dieta" />
         <activity android:name=".MainActivity" />

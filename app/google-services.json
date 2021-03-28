@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "158504072257",
+    "project_id": "projectfitness-98a0d",
+    "storage_bucket": "projectfitness-98a0d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:158504072257:android:77bfaa5c63e4adb63742c0",
+        "android_client_info": {
+          "package_name": "com.vinie4apps.projectfitness"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "158504072257-65ignbknjrsl1hijuk03c3q8422qjnk9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrXmGlrS3_4b5r7FTl0AhrS-mt0VmVAXw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "158504072257-65ignbknjrsl1hijuk03c3q8422qjnk9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

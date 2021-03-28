@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".profile.login">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PROJECT \n FITNESS"
+        android:layout_gravity="center"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:textColor="@color/azul"/>
+
+
+    <EditText
+        android:id="@+id/edit_email_login"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="32dp"
+        android:hint="Email"
+        android:layout_marginEnd="16dp"
+        android:paddingLeft="8dp"
+        android:layout_marginRight="16dp"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:paddingStart="14dp"
+        android:background="@drawable/shapeedgeradius"/>
+
+    <EditText
+        android:id="@+id/edit_password_login"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="16dp"
+        android:ems="10"
+        android:hint="Senha"
+        android:inputType="textPassword"
+        android:paddingLeft="14dp"
+        android:background="@drawable/shapeedgeradius"/>
+
+    <Button
+        android:id="@+id/btn_enter"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:onClick="loginUsers"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="32dp"
+        android:textColor="@android:color/white"
+        android:text="Entrar"
+        android:background="@drawable/shapea"
+        android:layout_marginStart="16dp" />
+
+    <TextView
+        android:id="@+id/txt_account"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Não tem uma conta ? Crie uma aqui !"
+        android:textStyle="bold"
+        android:onClick="gotoReg"
+        android:layout_gravity="center"
+        android:textColor="@color/azul"
+        />
+
+    <TextView
+        android:id="@+id/txt_esqueceu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Esqueceu a senha ? Recupere aqui !"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:textColor="@color/azul"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="30dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ou acesse utilizando sua conta do:"
+            android:textColor="@color/azul"
+            android:gravity="center"
+            android:textStyle="bold"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp"
+            android:gravity="center">
+
+            <!-- <com.google.android.gms.common.SignInButton
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:id="@+id/googlelogin"/>
+
+                 <com.facebook.login.widget.LoginButton
+                     android:id="@+id/login_button"
+                     android:layout_marginTop="5dp"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_marginStart="10dp"
+                     android:layout_marginLeft="10dp" /> -->
+
+             </LinearLayout>
+
+         </LinearLayout>
+
+     </LinearLayout>
+         </LinearLayout>
+             <androidx.core.widget.NestedScrollView
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:id="@+id/sheet_log"
+                 android:background="@color/azul"
+                 app:layout_behavior="@string/bottom_sheet_behavior"
+                 app:behavior_hideable= "true"
+                 app:behavior_peekHeight = "0dp">
+
+                 <androidx.cardview.widget.CardView
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     app:cardCornerRadius="6dp">
+
+                 <LinearLayout
+                     android:gravity="center"
+                     android:padding="5dp"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:orientation="vertical"
+                     android:layout_centerVertical="true"
+                     android:layout_alignParentLeft="true"
+                     android:layout_alignParentStart="true">
+
+                     <TextView
+                         android:id="@+id/textViewDialog"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:layout_weight="1"
+                         android:textSize="18dp"
+                         android:textStyle="bold"
+                         android:text="Entre com seu Email registrado para recuperar a senha !" />
+
+                     <EditText
+                         android:id="@+id/editTextTextEmailAddress"
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:layout_weight="1"
+                         android:ems="10"
+                         android:hint="Email"
+                         android:inputType="textEmailAddress" />
+
+                     <Button
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:layout_gravity="end"
+                         android:background="@drawable/shapea"
+                         android:text="enviar"
+                         android:textColor="@android:color/white"
+                         android:id="@+id/bntenviar"/>
+
+
+                 </LinearLayout>
+                 </androidx.cardview.widget.CardView>
+
+             </androidx.core.widget.NestedScrollView>
+
+     </androidx.coordinatorlayout.widget.CoordinatorLayout>
