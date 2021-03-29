@@ -11,18 +11,130 @@
 
     <include layout="@layout/profile"/>
 
-    <androidx.viewpager.widget.ViewPager
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:id="@+id/view_pager"
-        android:layout_weight="1"/>
+<ViewFlipper
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1"
+    android:id="@+id/ViewFlipper01">
+
+    <include layout="@layout/home_view"
+        android:id="@+id/homev"/>
+
+    <include layout="@layout/dieta_view"
+        android:id="@+id/dietav"/>
+
+    <include layout="@layout/treino_view"
+        android:id="@+id/treinov"/>
+
+    <include layout="@layout/estatistica_view"
+        android:id="@+id/estatisticav"/>
 
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabs"
+</ViewFlipper>
+
+
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:tabTextColor="@android:color/white"/>
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="@color/azul">
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:id="@+id/homell">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imghome"
+                android:src="@drawable/ic_baseline_home_24"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Home"
+                android:id="@+id/txthome"
+                android:textColor="@color/white"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginStart="35dp"
+            android:layout_marginLeft="35dp"
+            android:id="@+id/dietall">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/dietaimg"
+                android:src="@drawable/ic_baseline_food_bank_24"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dieta"
+                android:id="@+id/dietatxt"
+                android:textColor="@color/white"/>
+
+    </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginStart="35dp"
+            android:layout_marginLeft="35dp"
+            android:id="@+id/treinoll">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/treinoimg"
+                android:src="@drawable/ic_baseline_fitness_center_24"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Treino"
+                android:id="@+id/treinotxt"
+                android:textColor="@color/white"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginStart="35dp"
+            android:layout_marginLeft="35dp"
+            android:id="@+id/estatisticall">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/estaimg"
+                android:src="@drawable/ic_baseline_data_usage_24"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Estatistica"
+                android:id="@+id/estatxt"
+                android:textColor="@color/white"/>
+
+        </LinearLayout>
+
+</LinearLayout>
 
 </LinearLayout>

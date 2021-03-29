@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -13,23 +14,66 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
+import android.widget.TextView;
+import android.widget.ViewFlipper;
+import android.widget.ViewSwitcher;
 
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
+import com.vinie4apps.projectfitness.app.dieta;
+import com.vinie4apps.projectfitness.app.semana.ModelSemana;
+import com.vinie4apps.projectfitness.app.semana.PageAdapterSemana;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     //import de objs
-    private PageAdapter pageAdapter;
     private ViewPager viewPager;
     private int[] layouts;
     FirebaseAuth auth;
+    LinearLayout home, dieta, treino, estatistica;
+    ViewFlipper VF;
+    ImageView imgh, dietaimg, treinoimg, estaimg;
+    TextView txth, dietatxt, treinotxt, estatxt;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // declaração de layout e layout manager
+        home = (LinearLayout) findViewById(R.id.homell);
+        dieta = (LinearLayout) findViewById(R.id.dietall);
+        treino = (LinearLayout) findViewById(R.id.treinoll);
+        estatistica = (LinearLayout) findViewById(R.id.estatisticall);
+        VF = (ViewFlipper) findViewById(R.id.ViewFlipper01);
+
+        // bnt click
+        home.setOnClickListener(testebnt);
+        dieta.setOnClickListener(testebnt);
+        treino.setOnClickListener(testebnt);
+        estatistica.setOnClickListener(testebnt);
+
+        // declaração botoes e txt
+        imgh = findViewById(R.id.imghome);
+        txth = findViewById(R.id.txthome);
+        dietaimg = findViewById(R.id.dietaimg);
+        dietatxt = findViewById(R.id.dietatxt);
+        treinoimg = findViewById(R.id.treinoimg);
+        treinotxt = findViewById(R.id.treinotxt);
+        estaimg = findViewById(R.id.estaimg);
+        estatxt = findViewById(R.id.estatxt);
+
+        imgh.setImageResource(R.drawable.ic_baseline_home_24_click);
+        txth.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.amarelo));
 
         auth = FirebaseAuth.getInstance();
 
@@ -39,36 +83,11 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Project Fitness");
         toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.white));
 
-        // config. do ViewHolder
-        viewPager = findViewById(R.id.view_pager);
-        layouts = new int[]{R.layout.home_view,R.layout.dieta_view,R.layout.treino_view};
-        pageAdapter = new PageAdapter(layouts, getApplicationContext());
-        viewPager.setAdapter(pageAdapter);
 
-        // config. da Tabs
-        TabLayout tabs = findViewById(R.id.tabs);
-        tabs.setupWithViewPager(viewPager);
-        tabs.setBackgroundColor(ContextCompat.getColor(this, R.color.azul));
-        tabs.setSelectedTabIndicatorColor(ContextCompat.getColor(this, R.color.white));
+
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.azul));
         }
-
-
-        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-            }
-        });
-
 
 
 
@@ -99,5 +118,66 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
+    private View.OnClickListener testebnt = new View.OnClickListener() {
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.homell:
+                    VF.setDisplayedChild(0);
+                    changebntcolorHome();
+                    break;
+                case R.id.dietall:
+                    VF.setDisplayedChild(1);
+                    changebntcolorDieta();
+                    break;
+                case R.id.treinoll:
+                    VF.setDisplayedChild(2);
+                    changebntcolorTreino();
+                    break;
+                case R.id.estatisticall:
+                    VF.setDisplayedChild(3);
+                    changebntcolorEsta();
+                    break;
+            }
+        }
+    };
+    private void changebntcolorHome(){
+        imgh.setImageResource(R.drawable.ic_baseline_home_24_click);
+        txth.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.amarelo));
+        dietaimg.setImageResource(R.drawable.ic_baseline_food_bank_24);
+        dietatxt.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.white));
+        treinoimg.setImageResource(R.drawable.ic_baseline_fitness_center_24);
+        treinotxt.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.white));
+        estaimg.setImageResource(R.drawable.ic_baseline_data_usage_24);
+        estatxt.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.white));
+    }
+    private void changebntcolorDieta(){
+        imgh.setImageResource(R.drawable.ic_baseline_home_24);
+        txth.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.white));
+        dietaimg.setImageResource(R.drawable.ic_baseline_food_bank_24_click);
+        dietatxt.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.amarelo));
+        treinoimg.setImageResource(R.drawable.ic_baseline_fitness_center_24);
+        treinotxt.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.white));
+        estaimg.setImageResource(R.drawable.ic_baseline_data_usage_24);
+        estatxt.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.white));
+    }
+    private void changebntcolorTreino(){
+        imgh.setImageResource(R.drawable.ic_baseline_home_24);
+        txth.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.white));
+        dietaimg.setImageResource(R.drawable.ic_baseline_food_bank_24);
+        dietatxt.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.white));
+        treinoimg.setImageResource(R.drawable.ic_baseline_fitness_center_24_click);
+        treinotxt.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.amarelo));
+        estaimg.setImageResource(R.drawable.ic_baseline_data_usage_24);
+        estatxt.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.white));
+    }
+    private void changebntcolorEsta(){
+        imgh.setImageResource(R.drawable.ic_baseline_home_24);
+        txth.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.white));
+        dietaimg.setImageResource(R.drawable.ic_baseline_food_bank_24);
+        dietatxt.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.white));
+        treinoimg.setImageResource(R.drawable.ic_baseline_fitness_center_24);
+        treinotxt.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.white));
+        estaimg.setImageResource(R.drawable.ic_baseline_data_usage_24_click);
+        estatxt.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.amarelo));
+    }
 }
